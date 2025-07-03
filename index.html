@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarjeta Cyberpunk - Bryan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .card-container {
+      width: 360px;
+      height: 520px;
+      perspective: 1500px;
+      position: relative;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      backface-visibility: hidden;
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #1abc9c;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-front {
+      background: linear-gradient(145deg, #1a1c2c, #24243e);
+    }
+
+    .card-back {
+      background: linear-gradient(145deg, #00c9a7, #005f57);
+      transform: rotateY(180deg);
+    }
+
+    .card-front img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #00fff7;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px #00fff7;
+    }
+
+    h2, h3 {
+      color: #00fff7;
+      text-shadow: 0 0 5px #00fff7;
+    }
+
+    p {
+      text-align: center;
+      color: #ccc;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .buttons a, .toggle-btn, .contact-btn {
+      display: inline-block;
+      margin: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background-color: #00fff7;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #00fff7;
+      cursor: pointer;
+    }
+
+    .buttons a:hover, .toggle-btn:hover, .contact-btn:hover {
+      background-color: #1abc9c;
+      color: #fff;
+    }
+
+    .skills {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .skills li {
+      background: rgba(0, 0, 0, 0.2);
+      margin: 0.4rem 0;
+      padding: 0.5rem 1rem;
+      border-left: 4px solid #00fff7;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px #00fff7;
+    }
+
+    .footer {
+      font-size: 0.8rem;
+      color: #e0e0e0;
+      margin-top: 1rem;
+    }
+
+    .toggle-btn {
+      margin-top: 1.2rem;
+      background: #ff00cc;
+      box-shadow: 0 0 10px #ff00cc;
+    }
+
+    .toggle-btn:hover {
+      background: #ff44cc;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1e1e2f;
+      border: 2px solid #00fff7;
+      border-radius: 10px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px #00fff7;
+      color: white;
+      position: relative;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: #00fff7;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: white;
+    }
+
+    .modal-content button[type="submit"] {
+      width: 100%;
+      padding: 0.7rem;
+      background: #00fff7;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .modal-content button:hover {
+      background: #1abc9c;
+    }
+
+    .close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.5rem;
+      color: #00fff7;
+      cursor: pointer;
+    }
+    .card-front p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin: 0.5rem auto 1.5rem auto;
+  text-align: center;
+  max-width: 280px;
+}
+.card-container {
+  width: 400px; /* Aumentado de 360px */
+  height: 550px;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+  justify-items: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card" id="card">
+    <!-- FRONT -->
+    <div class="card-face card-front">
+    <img src="bcam.png" alt="Foto de Bryan" />
+    <h2>Bryan J. Cama Mamani</h2>
+    <p style="text-align:center;">
+        Estudiante de Diseño y Desarrollo de Software con interés en backend, APIs REST, análisis de datos con Python y experiencia en .NET y React. 
+        En constante aprendizaje y desarrollo de soluciones eficientes y escalables.
+    </p>
+
+    <div class="buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.2rem;">
+        <a href="https://www.linkedin.com/in/bryan-joseph-cama-mamani-833131316/" target="_blank">LinkedIn</a>
+        <a href="CV_BRYAN_CAMA_M.pdf" download="CV_Bryan_Cama.pdf">Descargar CV</a>
+        <a href="https://github.com/JosephLeoPoldo" target="_blank">GitHub</a>
+        <button class="contact-btn" onclick="openModal()">Contáctame</button>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleCard()">Ver habilidades</button>
+    </div>
+
+
+      <!-- BACK -->
+      <div class="card-face card-back">
+        <h3>Habilidades Técnicas</h3>
+        <ul class="skills">
+          <li>✔ C# / .NET</li>
+          <li>✔ JavaScript / React</li>
+          <li>✔ Python / Pandas</li>
+          <li>✔ HTML5 / CSS3</li>
+          <li>✔ MySQL / PostgreSQL</li>
+          <li>✔ Git / GitHub</li>
+        </ul>
+        <button class="toggle-btn" onclick="toggleCard()">Volver</button>
+        <div class="footer">¡Gracias por escanear mi tarjeta!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de contacto -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h3>Contáctame</h3>
+      <form action="https://formsubmit.co/eledar123@gmail.com" method="POST">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo" required>
+        <textarea name="message" placeholder="Tu mensaje" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleCard() {
+      const card = document.getElementById('card');
+      card.classList.toggle('flipped');
+    }
+
+    function openForm() {
+      document.getElementById("contactModal").style.display = "flex";
+    }
+
+    function closeForm() {
+      document.getElementById("contactModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
