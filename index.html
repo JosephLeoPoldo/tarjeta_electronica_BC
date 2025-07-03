@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tarjeta Cyberpunk - Bryan</title>
+  <title>Tarjeta Digital - Bryan</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,8 +21,8 @@
     }
 
     .card-container {
-      width: 360px;
-      height: 520px;
+      width: 400px;
+      height: 550px;
       perspective: 1500px;
       position: relative;
     }
@@ -83,7 +83,7 @@
       margin: 0.5rem 0 1rem;
     }
 
-    .buttons a, .toggle-btn, .contact-btn {
+    .buttons a, .toggle-btn {
       display: inline-block;
       margin: 0.4rem;
       padding: 0.5rem 1rem;
@@ -97,7 +97,7 @@
       cursor: pointer;
     }
 
-    .buttons a:hover, .toggle-btn:hover, .contact-btn:hover {
+    .buttons a:hover, .toggle-btn:hover {
       background-color: #1abc9c;
       color: #fff;
     }
@@ -134,114 +134,61 @@
       background: #ff44cc;
     }
 
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #1e1e2f;
-      border: 2px solid #00fff7;
-      border-radius: 10px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px #00fff7;
-      color: white;
-      position: relative;
-    }
-
-    .modal-content h3 {
-      margin-top: 0;
-      color: #00fff7;
-    }
-
-    .modal-content input,
-    .modal-content textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border: none;
-      border-radius: 6px;
-      background: #333;
-      color: white;
-    }
-
-    .modal-content button[type="submit"] {
-      width: 100%;
-      padding: 0.7rem;
-      background: #00fff7;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-
-    .modal-content button:hover {
-      background: #1abc9c;
-    }
-
-    .close {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 1.5rem;
-      color: #00fff7;
-      cursor: pointer;
-    }
     .card-front p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #ccc;
-  margin: 0.5rem auto 1.5rem auto;
-  text-align: center;
-  max-width: 280px;
-}
-.card-container {
-  width: 400px; /* Aumentado de 360px */
-  height: 550px;
-}
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: 100%;
-  justify-items: center;
-}
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ccc;
+      margin: 0.5rem auto 1.5rem auto;
+      text-align: center;
+      max-width: 280px;
+    }
 
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .email-copy {
+      color: #00fff7;
+      background: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .email-copy:hover {
+      background: #00fff7;
+      color: #000;
+    }
   </style>
 </head>
 <body>
   <div class="card-container">
     <div class="card" id="card">
-    <!-- FRONT -->
-    <div class="card-face card-front">
-    <img src="bcam.png" alt="Foto de Bryan" />
-    <h2>Bryan J. Cama Mamani</h2>
-    <p style="text-align:center;">
-        Estudiante de Diseño y Desarrollo de Software con interés en backend, APIs REST, análisis de datos con Python y experiencia en .NET y React. 
-        En constante aprendizaje y desarrollo de soluciones eficientes y escalables.
-    </p>
+      <!-- FRONT -->
+      <div class="card-face card-front">
+        <img src="bcam.png" alt="Foto de Bryan" />
+        <h2>Bryan J. Cama Mamani</h2>
+        <p>
+          Estudiante de Diseño y Desarrollo de Software con interés en backend, APIs REST, análisis de datos con Python y experiencia en .NET y React. 
+          En constante aprendizaje y desarrollo de soluciones eficientes y escalables.
+        </p>
 
-    <div class="buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.2rem;">
-        <a href="https://www.linkedin.com/in/bryan-joseph-cama-mamani-833131316/" target="_blank">LinkedIn</a>
-        <a href="CV_BRYAN_CAMA_M.pdf" download="CV_Bryan_Cama.pdf">Descargar CV</a>
-        <a href="https://github.com/JosephLeoPoldo" target="_blank">GitHub</a>
-    <button class="contact-btn" onclick="openForm()">Contáctame</button>
-    </div>
-    <button class="toggle-btn" onclick="toggleCard()">Ver habilidades</button>
-    </div>
+        <div class="buttons">
+          <a href="#" onclick="openInNewTab('https://www.linkedin.com/in/bryan-joseph-cama-mamani-833131316/')">LinkedIn</a>
+          <a href="#" onclick="openInNewTab('CV_BRYAN_CAMA_M.pdf')">Descargar CV</a>
+          <a href="#" onclick="openInNewTab('https://github.com/JosephLeoPoldo')">GitHub</a>
+        </div>
 
+        <div class="email-copy" onclick="copyEmail()">📧 bryan.cama.mamani@gmail.com</div>
+        <button class="toggle-btn" onclick="toggleCard()">Ver habilidades</button>
+      </div>
 
       <!-- BACK -->
       <div class="card-face card-back">
@@ -260,32 +207,20 @@
     </div>
   </div>
 
-  <!-- Modal de contacto -->
-  <div class="modal" id="contactModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeForm()">&times;</span>
-      <h3>Contáctame</h3>
-      <form action="https://formsubmit.co/eledar123@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Tu nombre" required>
-        <input type="email" name="email" placeholder="Tu correo" required>
-        <textarea name="message" placeholder="Tu mensaje" rows="4" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </div>
-
   <script>
     function toggleCard() {
-      const card = document.getElementById('card');
-      card.classList.toggle('flipped');
+      document.getElementById('card').classList.toggle('flipped');
     }
 
-    function openForm() {
-      document.getElementById("contactModal").style.display = "flex";
+    function copyEmail() {
+      const email = "bryan.cama.mamani@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        alert("Correo copiado al portapapeles: " + email);
+      });
     }
 
-    function closeForm() {
-      document.getElementById("contactModal").style.display = "none";
+    function openInNewTab(url) {
+      window.open(url, '_blank');
     }
   </script>
 </body>
